@@ -44,7 +44,7 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 
 ## 💾 Real-time Storage (Cassandra)
 
-![Minio_Storage](images/minio_processed_data.png)
+![Cassandra_Storage](images/Streaming_Topics.png)
 
 **Key Features :**
 - Uses **Cassandra** for scalable, fault-tolerant storage.
