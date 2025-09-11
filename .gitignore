@@ -6,3 +6,6 @@ __pycache__/
 
 # Logs and dags
 logs/**
+
+# Jupyter
+.ipynb_checkpoints
