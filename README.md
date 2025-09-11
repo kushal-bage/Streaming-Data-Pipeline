@@ -112,7 +112,7 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
    - `kafka_producer` → send events into Kafka topics
 
 2. **Transform & Load Stage:**
-   - `run_streaming`task → reads Kafka streams using Spark Structured Streaming
+   - `run_streaming` task → reads Kafka streams using Spark Structured Streaming
    - Performs transformations, filtering, and parsing
    - Writes processed results into Cassandra tables
 
