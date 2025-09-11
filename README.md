@@ -1,123 +1,168 @@
-# Realtime Data Streaming | End-to-End Data Engineering Project
 
-## Table of Contents
-- [Introduction](#introduction)
-- [System Architecture](#system-architecture)
-- [What You'll Learn](#what-youll-learn)
-- [Technologies](#technologies)
-- [Getting Started](#getting-started)
-- [Watch the Video Tutorial](#watch-the-video-tutorial)
+# 📡 Streaming Data Engineering Project
 
-## Process
- ┌─────────────┐       ┌───────────────┐       ┌───────────────┐       ┌───────────────┐
- │  Data Source│       │   Airflow DAG │       │ Spark Structured│       │   Cassandra   │
- │ (API/DB/...)│       │   Scheduler   │       │   Streaming     │       │   Keyspace    │
- └──────┬──────┘       └──────┬────────┘       └──────┬────────  ┘       └──────┬────────┘
-        │                     │                      │                        │
-        │   1. Extract        │                      │                        │
-        ├────────────────────▶│                      │                        │
-        │                     │                      │                        │
-        │                     │  2. Trigger Spark   │                        │
-        │                     ├────────────────────▶│                        │
-        │                     │                      │                        │
-        │                     │                      │  3. Connect to Kafka   │
-        │                     │                      ├──────────────────────▶│
-        │                     │                      │                        │
-        │                     │                      │  4. Micro-batch read   │
-        │                     │                      │    (e.g., 10 sec)     │
-        │                     │                      │                        │
-        │                     │                      │  5. Transform / Format │
-        │                     │                      │                        │
-        │                     │                      │  6. Write to Cassandra │
-        │                     │                      └──────────────────────▶│
-        │                     │                      │                        │
-        │                     │                      │  7. Optionally TTL /   │
-        │                     │                      │     Partition / Archive│
-        │                     │                      │                        │
+> Real-time data engineering project using Docker, Kafka, Spark Structured Streaming, Cassandra and Airflow
 
+## 🧾 Project Overview
 
-### อธิบาย flow
+This project demonstrates a real-time data pipeline for streaming ingestion, processing, and storage.
+It covers orchestration (Airflow), streaming processing (Spark Structured Streaming), real-time messaging (Kafka), scalable storage (Cassandra), and analytics (Jupyter).
 
-1.Data Source → Airflow DAG
+## ⚙️ Architecture Diagram
+![Arch_Diagram](images/Architecture_Diagram.png)
 
-- Airflow รับข้อมูลแบบ batch หรือ schedule DAG เพื่อ trigger Spark job
+## 💡 Technology Stack
 
-- DAG ไม่จำเป็นต้องรันทุกวินาที; อาจ run ทุก 1 นาที หรือชั่วโมงก็ได้
-
-2.Airflow → Spark Streaming
-
-- DAG trigger Spark Streaming job
-
-- Spark จะเชื่อม Kafka และอ่านข้อมูลแบบ micro-batch (เช่น ทุก 10 วินาที)
-
-3.Spark Streaming → Kafka
-
-- Spark อ่าน data ใหม่จาก Kafka topic
-
-4.Spark Streaming → Transform → Cassandra
-
-- Spark transform ข้อมูลแล้วเขียนเข้า Cassandra
-
-- สามารถกำหนด checkpoint เพื่อ recover job ถ้า crash
-
-- สามารถกำหนด TTL / partition เพื่อลดขนาด database
-
-## Introduction
-
-This project serves as a comprehensive guide to building an end-to-end data engineering pipeline. It covers each stage from data ingestion to processing and finally to storage, utilizing a robust tech stack that includes Apache Airflow, Python, Apache Kafka, Apache Zookeeper, Apache Spark, and Cassandra. Everything is containerized using Docker for ease of deployment and scalability.
-
-## System Architecture
-
-![System Architecture](https://github.com/airscholar/e2e-data-engineering/blob/main/Data%20engineering%20architecture.png)
-
-The project is designed with the following components:
-
-- **Data Source**: We use `randomuser.me` API to generate random user data for our pipeline.
-- **Apache Airflow**: Responsible for orchestrating the pipeline and storing fetched data in a PostgreSQL database.
-- **Apache Kafka and Zookeeper**: Used for streaming data from PostgreSQL to the processing engine.
-- **Control Center and Schema Registry**: Helps in monitoring and schema management of our Kafka streams.
-- **Apache Spark**: For data processing with its master and worker nodes.
-- **Cassandra**: Where the processed data will be stored.
-
-## What You'll Learn
-
-- Setting up a data pipeline with Apache Airflow
-- Real-time data streaming with Apache Kafka
-- Distributed synchronization with Apache Zookeeper
-- Data processing techniques with Apache Spark
-- Data storage solutions with Cassandra and PostgreSQL
-- Containerizing your entire data engineering setup with Docker
-
-## Technologies
-
-- Apache Airflow
+**Programming Languages :**
 - Python
+- SQL
+
+**Data Streaming & Orchestration :**
 - Apache Kafka
-- Apache Zookeeper
-- Apache Spark
-- Cassandra
-- PostgreSQL
+- Apache Airflow
+- Apache Spark (Structured Streaming)
+
+**Infrastructure & Storage  :**
 - Docker
+- Cassandra
 
-## Getting Started
+**Visualization :**
+- Looker Studio
+- JupyterLab
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/airscholar/e2e-data-engineering.git
-    ```
+## 🐳 Docker / Infrastructure Setup
 
-2. Navigate to the project directory:
-    ```bash
-    cd e2e-data-engineering
-    ```
+![Docker_Setup](images/Docker_Service.png)
 
-3. Run Docker Compose to spin up the services:
-    ```bash
-    docker-compose up
-    ```
+**Services included :**
+- `zookeeper`, `broker`, `schema-registry`, `control-center`
+- `airflow-webserver`, `airflow-scheduler`, `postgres`
+- `spark-master`, `spark-worker`
+- `cassandra_db`
+- `jupyter`
+- `producer`
 
-For more detailed instructions, please check out the video tutorial linked below.
+## 💾 Real-time Storage (Cassandra)
 
-## Watch the Video Tutorial
+![Minio_Storage](images/minio_processed_data.png)
 
-For a complete walkthrough and practical demonstration, check out our [YouTube Video Tutorial](https://www.youtube.com/watch?v=GqAcTrqKcrY).
+**Key Features :**
+- Uses **Cassandra** for scalable, fault-tolerant storage.
+- Processed streaming data from Spark is written into Cassandra.
+- Supports CQL queries for downstream analytics.
+
+## ⚡ Spark Cluster (Master/Workers)
+
+![Spark_Cluster](images/Spark_Cluster.png)
+
+**This cluster runs in standalone mode with :**
+- 1 Spark Master
+- 1 Spark Workers
+- Deployed inside Docker containers
+
+## 📂 Data Ingestion
+
+### 1. Kafka Producer
+```json
+{
+  "id": "u123",
+  "event_time": "2025-09-11T10:00:00Z",
+  "action": "purchase",
+  "amount": 59.99
+}
+```
+- Custom producer generates real-time events.
+- Data is published to Kafka topics, consumed by Spark.
+- Kafka Control Center available at http://localhost:9021
+
+## 🧾 Data Flow Diagram
+![Workflow_Diagram](images/Workflow_Diagram.png)
+
+## 🔄 Streaming ETL Workflow Diagram
+![ETL_Diagram](images/ETL_Diagram.png)
+
+#### Spark ETL Components / Airflow Tasks
+
+1. **Ingestion Stage:**
+   - `kafka_producer` → send events into Kafka topics
+
+2. **Transform Stage:**
+   - `spark_streaming` → read Kafka stream
+   - apply transformations, filtering, parsing
+
+3. **Load Stage:**
+   - `cassandra_writer` → push processed data into Cassandra tables
+  
+4. **Orchestration:**
+   - Airflow DAG schedules and monitors streaming jobs
+
+## ✅ Final Output
+[<img src="https://github.com/user-attachments/assets/9f373252-43cd-43ac-970c-f262ea87e39d" width=70% height=70%>](https://lookerstudio.google.com/reporting/5737527d-e089-47f5-80f1-2adda4ff3019)
+* The final output from Looker Studio can be accessed via the following link: [View Dashboard](https://lookerstudio.google.com/reporting/5737527d-e089-47f5-80f1-2adda4ff3019). Note: The dashboard reads data from a static CSV file exported from BigQuery.
+
+## 🚀 Setup & Execution
+
+1. Clone this repository :
+
+```bash
+git clone https://github.com/supakunz/Book-Revenue-Pipeline.git
+```
+
+2. Navigate to the project folder and Set up the environment variables :
+
+```
+cd Book-Revenue-Pipeline
+```
+- Create a `.env` file in the root directory.
+
+- Add the following variables to the .env file, replacing the placeholder values with your own:
+
+```
+# Airflow Configuration
+AIRFLOW_UID=1000
+_AIRFLOW_WWW_USER_USERNAME=airflow
+_AIRFLOW_WWW_USER_PASSWORD=airflow123
+
+# MySQL Database
+MYSQL_ROOT_PASSWORD=rootpassword
+MYSQL_DATABASE=airflow
+MYSQL_USER=airflow
+MYSQL_PASSWORD=airflow
+
+# MinIO
+MINIO_ROOT_USER=minioadmin
+MINIO_ROOT_PASSWORD=minioadmin
+
+# Jupyter
+JUPYTER_TOKEN=
+JUPYTER_PORT=8888
+
+# Network
+COMPOSE_PROJECT_NAME=data-engineering
+
+# Additional Ports
+PHPMYADMIN_PORT=8082
+AIRFLOW_WEBSERVER_PORT=8080
+SPARK_MASTER_UI_PORT=8081
+MINIO_API_PORT=9000
+MINIO_CONSOLE_PORT=9001
+MYSQL_PORT=3306
+```
+3. Start the services :
+```bash
+docker compose up -d
+```
+
+4. Start the services :
+
+- Airflow: http://localhost:8080
+- Kafka Control Center: http://localhost:9021
+- Jupyter: http://localhost:8888
+- Cassandra (CQL): `localhost:9042`
+
+## 🙋‍♂️ Contact
+
+Developed by **Supakun Thata**  
+📧 Email: supakunt.thata@gmail.com  
+🔗 GitHub: [SupakunZ](https://github.com/SupakunZ)
+
