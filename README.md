@@ -40,7 +40,7 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 - `spark-master`, `spark-worker`
 - `cassandra_db`
 - `jupyter`
-- `producer`
+- `producer` *(running inside container)*
 
 ## 💾 Real-time Storage (Cassandra)
 
@@ -81,6 +81,7 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 ```
 - Custom producer generates real-time events.
 - Data is published to Kafka topics, consumed by Spark.
+- Producer runs inside container.
 - Kafka Control Center available at http://localhost:9021
 
 ### 2. Kafka Control Center Overview
