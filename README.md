@@ -122,7 +122,6 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
    - Limits concurrency and active runs to avoid overlapping tasks
 
 ## ✅ Final Output
-[<img src="https://github.com/user-attachments/assets/9f373252-43cd-43ac-970c-f262ea87e39d" width=70% height=70%>](https://lookerstudio.google.com/reporting/5737527d-e089-47f5-80f1-2adda4ff3019)
 * The final output from Looker Studio can be accessed via the following link: [View Dashboard](https://lookerstudio.google.com/reporting/5737527d-e089-47f5-80f1-2adda4ff3019). Note: The dashboard reads data from a static CSV file exported from BigQuery.
 
 ## 🚀 Setup & Execution
@@ -130,55 +129,15 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 1. Clone this repository :
 
 ```bash
-git clone https://github.com/supakunz/Book-Revenue-Pipeline.git
+git clone https://github.com/supakunz/Streaming-Data-Pipeline.git
 ```
 
-2. Navigate to the project folder and Set up the environment variables :
-
-```
-cd Book-Revenue-Pipeline
-```
-- Create a `.env` file in the root directory.
-
-- Add the following variables to the .env file, replacing the placeholder values with your own:
-
-```
-# Airflow Configuration
-AIRFLOW_UID=1000
-_AIRFLOW_WWW_USER_USERNAME=airflow
-_AIRFLOW_WWW_USER_PASSWORD=airflow123
-
-# MySQL Database
-MYSQL_ROOT_PASSWORD=rootpassword
-MYSQL_DATABASE=airflow
-MYSQL_USER=airflow
-MYSQL_PASSWORD=airflow
-
-# MinIO
-MINIO_ROOT_USER=minioadmin
-MINIO_ROOT_PASSWORD=minioadmin
-
-# Jupyter
-JUPYTER_TOKEN=
-JUPYTER_PORT=8888
-
-# Network
-COMPOSE_PROJECT_NAME=data-engineering
-
-# Additional Ports
-PHPMYADMIN_PORT=8082
-AIRFLOW_WEBSERVER_PORT=8080
-SPARK_MASTER_UI_PORT=8081
-MINIO_API_PORT=9000
-MINIO_CONSOLE_PORT=9001
-MYSQL_PORT=3306
-```
-3. Start the services :
+2. Start the services :
 ```bash
 docker compose up -d
 ```
 
-4. Start the services :
+3. Start the services :
 
 - Airflow: http://localhost:8080
 - Kafka Control Center: http://localhost:9021
