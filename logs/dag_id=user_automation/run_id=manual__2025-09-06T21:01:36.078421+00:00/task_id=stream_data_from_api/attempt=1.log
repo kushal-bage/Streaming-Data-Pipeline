@@ -1,0 +1,36 @@
+[2025-09-06T21:01:37.355+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: user_automation.stream_data_from_api manual__2025-09-06T21:01:36.078421+00:00 [queued]>
+[2025-09-06T21:01:37.375+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: user_automation.stream_data_from_api manual__2025-09-06T21:01:36.078421+00:00 [queued]>
+[2025-09-06T21:01:37.376+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-09-06T21:01:37.404+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): stream_data_from_api> on 2025-09-06 21:01:36.078421+00:00
+[2025-09-06T21:01:37.412+0000] {standard_task_runner.py:57} INFO - Started process 339 to run task
+[2025-09-06T21:01:37.416+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'user_automation', 'stream_data_from_api', 'manual__2025-09-06T21:01:36.078421+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/kafka_stream.py', '--cfg-path', '/tmp/tmp1jibgo6l']
+[2025-09-06T21:01:37.419+0000] {standard_task_runner.py:85} INFO - Job 19: Subtask stream_data_from_api
+[2025-09-06T21:01:37.505+0000] {task_command.py:416} INFO - Running <TaskInstance: user_automation.stream_data_from_api manual__2025-09-06T21:01:36.078421+00:00 [running]> on host a8ac21146533
+[2025-09-06T21:01:37.657+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airscholar' AIRFLOW_CTX_DAG_ID='user_automation' AIRFLOW_CTX_TASK_ID='stream_data_from_api' AIRFLOW_CTX_EXECUTION_DATE='2025-09-06T21:01:36.078421+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-06T21:01:36.078421+00:00'
+[2025-09-06T21:01:37.669+0000] {conn.py:380} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: connecting to broker:29092 [('172.18.0.9', 29092) IPv4]
+[2025-09-06T21:01:37.671+0000] {conn.py:1205} INFO - Probing node bootstrap-0 broker version
+[2025-09-06T21:01:37.674+0000] {conn.py:410} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: Connection complete.
+[2025-09-06T21:01:37.785+0000] {conn.py:1267} INFO - Broker version identified as 2.5.0
+[2025-09-06T21:01:37.786+0000] {conn.py:1268} INFO - Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+[2025-09-06T21:01:38.491+0000] {kafka_stream.py:122} INFO - Sent user: tinyfrog133
+[2025-09-06T21:01:38.496+0000] {conn.py:380} INFO - <BrokerConnection node_id=1 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: connecting to broker:29092 [('172.18.0.9', 29092) IPv4]
+[2025-09-06T21:01:38.497+0000] {conn.py:410} INFO - <BrokerConnection node_id=1 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: Connection complete.
+[2025-09-06T21:01:38.498+0000] {conn.py:919} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connected> [IPv4 ('172.18.0.9', 29092)]>: Closing connection. 
+[2025-09-06T21:01:43.996+0000] {kafka_stream.py:122} INFO - Sent user: goldenbird878
+[2025-09-06T21:01:49.567+0000] {kafka_stream.py:122} INFO - Sent user: ticklishmouse522
+[2025-09-06T21:01:55.092+0000] {kafka_stream.py:122} INFO - Sent user: greenostrich572
+[2025-09-06T21:02:00.713+0000] {kafka_stream.py:122} INFO - Sent user: blackcat746
+[2025-09-06T21:02:06.199+0000] {kafka_stream.py:122} INFO - Sent user: orangepeacock232
+[2025-09-06T21:02:11.852+0000] {kafka_stream.py:122} INFO - Sent user: organicfrog989
+[2025-09-06T21:02:17.471+0000] {kafka_stream.py:122} INFO - Sent user: tinykoala212
+[2025-09-06T21:02:23.306+0000] {kafka_stream.py:122} INFO - Sent user: whitesnake274
+[2025-09-06T21:02:30.981+0000] {kafka_stream.py:122} INFO - Sent user: tinycat163
+[2025-09-06T21:02:37.538+0000] {kafka_stream.py:122} INFO - Sent user: biggorilla966
+[2025-09-06T21:02:43.140+0000] {kafka_stream.py:122} INFO - Sent user: redwolf665
+[2025-09-06T21:02:48.602+0000] {kafka_stream.py:122} INFO - Sent user: yellowfish513
+[2025-09-06T21:02:52.275+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to failed. Terminating instance.
+[2025-09-06T21:02:52.283+0000] {process_utils.py:131} INFO - Sending 15 to group 339. PIDs of all processes in the group: [339]
+[2025-09-06T21:02:52.284+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 339
+[2025-09-06T21:02:52.285+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-09-06T21:02:52.312+0000] {conn.py:919} INFO - <BrokerConnection node_id=1 host=broker:29092 <connected> [IPv4 ('172.18.0.9', 29092)]>: Closing connection. 
+[2025-09-06T21:02:52.342+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=339, status='terminated', exitcode=0, started='21:01:36') (339) terminated with exit code 0

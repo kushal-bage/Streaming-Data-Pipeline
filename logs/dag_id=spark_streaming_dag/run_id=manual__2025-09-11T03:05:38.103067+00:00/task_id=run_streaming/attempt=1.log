@@ -1,0 +1,14 @@
+[2025-09-11T03:05:39.298+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spark_streaming_dag.run_streaming manual__2025-09-11T03:05:38.103067+00:00 [queued]>
+[2025-09-11T03:05:39.317+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spark_streaming_dag.run_streaming manual__2025-09-11T03:05:38.103067+00:00 [queued]>
+[2025-09-11T03:05:39.318+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-09-11T03:05:39.344+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): run_streaming> on 2025-09-11 03:05:38.103067+00:00
+[2025-09-11T03:05:39.353+0000] {standard_task_runner.py:57} INFO - Started process 220 to run task
+[2025-09-11T03:05:39.357+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'spark_streaming_dag', 'run_streaming', 'manual__2025-09-11T03:05:38.103067+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/streaming_dag.py', '--cfg-path', '/tmp/tmp5zpa1t1v']
+[2025-09-11T03:05:39.361+0000] {standard_task_runner.py:85} INFO - Job 10: Subtask run_streaming
+[2025-09-11T03:05:39.463+0000] {task_command.py:416} INFO - Running <TaskInstance: spark_streaming_dag.run_streaming manual__2025-09-11T03:05:38.103067+00:00 [running]> on host 0fb92bc8c157
+[2025-09-11T03:05:39.603+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='spark_streaming_dag' AIRFLOW_CTX_TASK_ID='run_streaming' AIRFLOW_CTX_EXECUTION_DATE='2025-09-11T03:05:38.103067+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-11T03:05:38.103067+00:00'
+[2025-09-11T03:05:39.736+0000] {spark_utils.py:27} ERROR - Couldn't create the spark session due to exception [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+[2025-09-11T03:05:39.738+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-09-11T03:05:39.756+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=spark_streaming_dag, task_id=run_streaming, execution_date=20250911T030538, start_date=20250911T030539, end_date=20250911T030539
+[2025-09-11T03:05:39.786+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-09-11T03:05:39.809+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

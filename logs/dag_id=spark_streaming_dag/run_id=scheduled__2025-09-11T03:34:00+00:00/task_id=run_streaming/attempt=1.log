@@ -1,0 +1,18 @@
+[2025-09-11T03:35:13.922+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spark_streaming_dag.run_streaming scheduled__2025-09-11T03:34:00+00:00 [queued]>
+[2025-09-11T03:35:13.945+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spark_streaming_dag.run_streaming scheduled__2025-09-11T03:34:00+00:00 [queued]>
+[2025-09-11T03:35:13.947+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-09-11T03:35:13.972+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): run_streaming> on 2025-09-11 03:34:00+00:00
+[2025-09-11T03:35:13.982+0000] {standard_task_runner.py:57} INFO - Started process 172 to run task
+[2025-09-11T03:35:13.986+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'spark_streaming_dag', 'run_streaming', 'scheduled__2025-09-11T03:34:00+00:00', '--job-id', '32', '--raw', '--subdir', 'DAGS_FOLDER/streaming_dag.py', '--cfg-path', '/tmp/tmp3pblsj8f']
+[2025-09-11T03:35:13.990+0000] {standard_task_runner.py:85} INFO - Job 32: Subtask run_streaming
+[2025-09-11T03:35:14.144+0000] {task_command.py:416} INFO - Running <TaskInstance: spark_streaming_dag.run_streaming scheduled__2025-09-11T03:34:00+00:00 [running]> on host 954b9572d0b9
+[2025-09-11T03:35:14.281+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='spark_streaming_dag' AIRFLOW_CTX_TASK_ID='run_streaming' AIRFLOW_CTX_EXECUTION_DATE='2025-09-11T03:34:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-09-11T03:34:00+00:00'
+[2025-09-11T03:38:59.608+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to failed. Terminating instance.
+[2025-09-11T03:38:59.619+0000] {process_utils.py:131} INFO - Sending 15 to group 172. PIDs of all processes in the group: [174, 172]
+[2025-09-11T03:38:59.620+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 172
+[2025-09-11T03:38:59.628+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-09-11T03:38:59.657+0000] {spark_utils.py:27} ERROR - Couldn't create the spark session due to exception Task received SIGTERM signal
+[2025-09-11T03:38:59.660+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-09-11T03:38:59.700+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=spark_streaming_dag, task_id=run_streaming, execution_date=20250911T033400, start_date=20250911T033513, end_date=20250911T033859
+[2025-09-11T03:38:59.760+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=174, status='terminated', started='03:35:13') (174) terminated with exit code None
+[2025-09-11T03:38:59.762+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=172, status='terminated', exitcode=0, started='03:35:13') (172) terminated with exit code 0

@@ -1,0 +1,50 @@
+[2025-09-06T20:56:48.968+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: user_automation.stream_data_from_api manual__2025-09-06T20:56:46.595884+00:00 [queued]>
+[2025-09-06T20:56:49.009+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: user_automation.stream_data_from_api manual__2025-09-06T20:56:46.595884+00:00 [queued]>
+[2025-09-06T20:56:49.010+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-09-06T20:56:49.067+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): stream_data_from_api> on 2025-09-06 20:56:46.595884+00:00
+[2025-09-06T20:56:49.079+0000] {standard_task_runner.py:57} INFO - Started process 283 to run task
+[2025-09-06T20:56:49.085+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'user_automation', 'stream_data_from_api', 'manual__2025-09-06T20:56:46.595884+00:00', '--job-id', '17', '--raw', '--subdir', 'DAGS_FOLDER/kafka_stream.py', '--cfg-path', '/tmp/tmpxfzrl_ej']
+[2025-09-06T20:56:49.089+0000] {standard_task_runner.py:85} INFO - Job 17: Subtask stream_data_from_api
+[2025-09-06T20:56:49.191+0000] {task_command.py:416} INFO - Running <TaskInstance: user_automation.stream_data_from_api manual__2025-09-06T20:56:46.595884+00:00 [running]> on host a8ac21146533
+[2025-09-06T20:56:49.383+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airscholar' AIRFLOW_CTX_DAG_ID='user_automation' AIRFLOW_CTX_TASK_ID='stream_data_from_api' AIRFLOW_CTX_EXECUTION_DATE='2025-09-06T20:56:46.595884+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-06T20:56:46.595884+00:00'
+[2025-09-06T20:56:49.391+0000] {conn.py:380} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: connecting to broker:29092 [('172.18.0.9', 29092) IPv4]
+[2025-09-06T20:56:49.393+0000] {conn.py:1205} INFO - Probing node bootstrap-0 broker version
+[2025-09-06T20:56:49.396+0000] {conn.py:410} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: Connection complete.
+[2025-09-06T20:56:49.506+0000] {conn.py:1267} INFO - Broker version identified as 2.5.0
+[2025-09-06T20:56:49.506+0000] {conn.py:1268} INFO - Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+[2025-09-06T20:56:50.050+0000] {kafka_stream.py:122} INFO - Sent user: heavygoose327
+[2025-09-06T20:56:50.055+0000] {conn.py:380} INFO - <BrokerConnection node_id=1 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: connecting to broker:29092 [('172.18.0.9', 29092) IPv4]
+[2025-09-06T20:56:50.056+0000] {conn.py:410} INFO - <BrokerConnection node_id=1 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: Connection complete.
+[2025-09-06T20:56:50.058+0000] {conn.py:919} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connected> [IPv4 ('172.18.0.9', 29092)]>: Closing connection. 
+[2025-09-06T20:56:55.925+0000] {kafka_stream.py:122} INFO - Sent user: blackostrich149
+[2025-09-06T20:57:01.361+0000] {kafka_stream.py:122} INFO - Sent user: happypanda616
+[2025-09-06T20:57:06.887+0000] {kafka_stream.py:122} INFO - Sent user: browndog340
+[2025-09-06T20:57:12.621+0000] {kafka_stream.py:122} INFO - Sent user: angrybutterfly142
+[2025-09-06T20:57:18.263+0000] {kafka_stream.py:122} INFO - Sent user: ticklishbear251
+[2025-09-06T20:57:23.694+0000] {kafka_stream.py:122} INFO - Sent user: blueostrich695
+[2025-09-06T20:57:29.133+0000] {kafka_stream.py:122} INFO - Sent user: brownfrog653
+[2025-09-06T20:57:34.599+0000] {kafka_stream.py:122} INFO - Sent user: beautifuldog165
+[2025-09-06T20:57:40.151+0000] {kafka_stream.py:122} INFO - Sent user: sadrabbit639
+[2025-09-06T20:57:45.661+0000] {kafka_stream.py:122} INFO - Sent user: silverelephant198
+[2025-09-06T20:57:51.104+0000] {kafka_stream.py:122} INFO - Sent user: greengoose980
+[2025-09-06T20:57:56.755+0000] {kafka_stream.py:122} INFO - Sent user: blackkoala709
+[2025-09-06T20:58:02.256+0000] {kafka_stream.py:122} INFO - Sent user: greenzebra196
+[2025-09-06T20:58:07.917+0000] {kafka_stream.py:122} INFO - Sent user: lazykoala204
+[2025-09-06T20:58:14.275+0000] {kafka_stream.py:122} INFO - Sent user: angryduck278
+[2025-09-06T20:58:19.723+0000] {kafka_stream.py:122} INFO - Sent user: brownfrog278
+[2025-09-06T20:58:25.838+0000] {kafka_stream.py:122} INFO - Sent user: angryleopard762
+[2025-09-06T20:58:31.379+0000] {kafka_stream.py:122} INFO - Sent user: heavyduck389
+[2025-09-06T20:58:36.821+0000] {kafka_stream.py:122} INFO - Sent user: silverelephant918
+[2025-09-06T20:58:42.264+0000] {kafka_stream.py:122} INFO - Sent user: beautifulduck325
+[2025-09-06T20:58:47.853+0000] {kafka_stream.py:122} INFO - Sent user: greenmeercat865
+[2025-09-06T20:58:53.284+0000] {kafka_stream.py:122} INFO - Sent user: silverpanda198
+[2025-09-06T20:58:58.715+0000] {kafka_stream.py:122} INFO - Sent user: blueostrich371
+[2025-09-06T20:59:04.138+0000] {kafka_stream.py:122} INFO - Sent user: orangefrog782
+[2025-09-06T20:59:09.664+0000] {kafka_stream.py:122} INFO - Sent user: crazybutterfly820
+[2025-09-06T20:59:15.207+0000] {kafka_stream.py:122} INFO - Sent user: bigfish668
+[2025-09-06T20:59:15.499+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to failed. Terminating instance.
+[2025-09-06T20:59:15.504+0000] {process_utils.py:131} INFO - Sending 15 to group 283. PIDs of all processes in the group: [283]
+[2025-09-06T20:59:15.505+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 283
+[2025-09-06T20:59:15.507+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-09-06T20:59:15.536+0000] {conn.py:919} INFO - <BrokerConnection node_id=1 host=broker:29092 <connected> [IPv4 ('172.18.0.9', 29092)]>: Closing connection. 
+[2025-09-06T20:59:15.565+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=283, status='terminated', exitcode=0, started='20:56:48') (283) terminated with exit code 0

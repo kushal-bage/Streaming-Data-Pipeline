@@ -8,6 +8,60 @@
 - [Getting Started](#getting-started)
 - [Watch the Video Tutorial](#watch-the-video-tutorial)
 
+## Process
+ ┌─────────────┐       ┌───────────────┐       ┌───────────────┐       ┌───────────────┐
+ │  Data Source│       │   Airflow DAG │       │ Spark Structured│       │   Cassandra   │
+ │ (API/DB/...)│       │   Scheduler   │       │   Streaming     │       │   Keyspace    │
+ └──────┬──────┘       └──────┬────────┘       └──────┬────────  ┘       └──────┬────────┘
+        │                     │                      │                        │
+        │   1. Extract        │                      │                        │
+        ├────────────────────▶│                      │                        │
+        │                     │                      │                        │
+        │                     │  2. Trigger Spark   │                        │
+        │                     ├────────────────────▶│                        │
+        │                     │                      │                        │
+        │                     │                      │  3. Connect to Kafka   │
+        │                     │                      ├──────────────────────▶│
+        │                     │                      │                        │
+        │                     │                      │  4. Micro-batch read   │
+        │                     │                      │    (e.g., 10 sec)     │
+        │                     │                      │                        │
+        │                     │                      │  5. Transform / Format │
+        │                     │                      │                        │
+        │                     │                      │  6. Write to Cassandra │
+        │                     │                      └──────────────────────▶│
+        │                     │                      │                        │
+        │                     │                      │  7. Optionally TTL /   │
+        │                     │                      │     Partition / Archive│
+        │                     │                      │                        │
+
+
+### อธิบาย flow
+
+1.Data Source → Airflow DAG
+
+- Airflow รับข้อมูลแบบ batch หรือ schedule DAG เพื่อ trigger Spark job
+
+- DAG ไม่จำเป็นต้องรันทุกวินาที; อาจ run ทุก 1 นาที หรือชั่วโมงก็ได้
+
+2.Airflow → Spark Streaming
+
+- DAG trigger Spark Streaming job
+
+- Spark จะเชื่อม Kafka และอ่านข้อมูลแบบ micro-batch (เช่น ทุก 10 วินาที)
+
+3.Spark Streaming → Kafka
+
+- Spark อ่าน data ใหม่จาก Kafka topic
+
+4.Spark Streaming → Transform → Cassandra
+
+- Spark transform ข้อมูลแล้วเขียนเข้า Cassandra
+
+- สามารถกำหนด checkpoint เพื่อ recover job ถ้า crash
+
+- สามารถกำหนด TTL / partition เพื่อลดขนาด database
+
 ## Introduction
 
 This project serves as a comprehensive guide to building an end-to-end data engineering pipeline. It covers each stage from data ingestion to processing and finally to storage, utilizing a robust tech stack that includes Apache Airflow, Python, Apache Kafka, Apache Zookeeper, Apache Spark, and Cassandra. Everything is containerized using Docker for ease of deployment and scalability.

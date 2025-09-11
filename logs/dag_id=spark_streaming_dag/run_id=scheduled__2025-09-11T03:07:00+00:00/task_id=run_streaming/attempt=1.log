@@ -1,0 +1,14 @@
+[2025-09-11T03:08:00.821+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spark_streaming_dag.run_streaming scheduled__2025-09-11T03:07:00+00:00 [queued]>
+[2025-09-11T03:08:00.833+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spark_streaming_dag.run_streaming scheduled__2025-09-11T03:07:00+00:00 [queued]>
+[2025-09-11T03:08:00.834+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-09-11T03:08:00.853+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): run_streaming> on 2025-09-11 03:07:00+00:00
+[2025-09-11T03:08:00.861+0000] {standard_task_runner.py:57} INFO - Started process 275 to run task
+[2025-09-11T03:08:00.865+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'spark_streaming_dag', 'run_streaming', 'scheduled__2025-09-11T03:07:00+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/streaming_dag.py', '--cfg-path', '/tmp/tmp_ts4fuer']
+[2025-09-11T03:08:00.867+0000] {standard_task_runner.py:85} INFO - Job 13: Subtask run_streaming
+[2025-09-11T03:08:00.932+0000] {task_command.py:416} INFO - Running <TaskInstance: spark_streaming_dag.run_streaming scheduled__2025-09-11T03:07:00+00:00 [running]> on host 0fb92bc8c157
+[2025-09-11T03:08:01.043+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='spark_streaming_dag' AIRFLOW_CTX_TASK_ID='run_streaming' AIRFLOW_CTX_EXECUTION_DATE='2025-09-11T03:07:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-09-11T03:07:00+00:00'
+[2025-09-11T03:08:01.172+0000] {spark_utils.py:27} ERROR - Couldn't create the spark session due to exception [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+[2025-09-11T03:08:01.174+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-09-11T03:08:01.190+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=spark_streaming_dag, task_id=run_streaming, execution_date=20250911T030700, start_date=20250911T030800, end_date=20250911T030801
+[2025-09-11T03:08:01.211+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-09-11T03:08:01.234+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,50 @@
+[2025-09-07T08:22:14.335+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: user_automation.stream_data_from_api scheduled__2025-09-06T00:00:00+00:00 [queued]>
+[2025-09-07T08:22:14.351+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: user_automation.stream_data_from_api scheduled__2025-09-06T00:00:00+00:00 [queued]>
+[2025-09-07T08:22:14.353+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-09-07T08:22:14.375+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): stream_data_from_api> on 2025-09-06 00:00:00+00:00
+[2025-09-07T08:22:14.383+0000] {standard_task_runner.py:57} INFO - Started process 170 to run task
+[2025-09-07T08:22:14.387+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'user_automation', 'stream_data_from_api', 'scheduled__2025-09-06T00:00:00+00:00', '--job-id', '24', '--raw', '--subdir', 'DAGS_FOLDER/kafka_stream.py', '--cfg-path', '/tmp/tmpsfh3xbcb']
+[2025-09-07T08:22:14.390+0000] {standard_task_runner.py:85} INFO - Job 24: Subtask stream_data_from_api
+[2025-09-07T08:22:14.467+0000] {task_command.py:416} INFO - Running <TaskInstance: user_automation.stream_data_from_api scheduled__2025-09-06T00:00:00+00:00 [running]> on host f04007e6054b
+[2025-09-07T08:22:14.624+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airscholar' AIRFLOW_CTX_DAG_ID='user_automation' AIRFLOW_CTX_TASK_ID='stream_data_from_api' AIRFLOW_CTX_EXECUTION_DATE='2025-09-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-09-06T00:00:00+00:00'
+[2025-09-07T08:22:14.631+0000] {conn.py:380} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: connecting to broker:29092 [('172.18.0.9', 29092) IPv4]
+[2025-09-07T08:22:14.633+0000] {conn.py:1205} INFO - Probing node bootstrap-0 broker version
+[2025-09-07T08:22:14.636+0000] {conn.py:410} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: Connection complete.
+[2025-09-07T08:22:14.750+0000] {conn.py:1267} INFO - Broker version identified as 2.5.0
+[2025-09-07T08:22:14.751+0000] {conn.py:1268} INFO - Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+[2025-09-07T08:22:16.066+0000] {conn.py:380} INFO - <BrokerConnection node_id=1 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: connecting to broker:29092 [('172.18.0.9', 29092) IPv4]
+[2025-09-07T08:22:16.070+0000] {conn.py:410} INFO - <BrokerConnection node_id=1 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: Connection complete.
+[2025-09-07T08:22:16.072+0000] {conn.py:919} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connected> [IPv4 ('172.18.0.9', 29092)]>: Closing connection. 
+[2025-09-07T08:22:16.269+0000] {kafka_stream.py:122} INFO - Sent user: sadbutterfly579
+[2025-09-07T08:22:22.155+0000] {kafka_stream.py:122} INFO - Sent user: lazywolf264
+[2025-09-07T08:22:29.318+0000] {kafka_stream.py:122} INFO - Sent user: ticklishgoose105
+[2025-09-07T08:22:35.167+0000] {kafka_stream.py:122} INFO - Sent user: tinyfrog541
+[2025-09-07T08:22:42.836+0000] {kafka_stream.py:122} INFO - Sent user: ticklishzebra215
+[2025-09-07T08:22:48.737+0000] {kafka_stream.py:122} INFO - Sent user: biggorilla369
+[2025-09-07T08:22:54.718+0000] {kafka_stream.py:122} INFO - Sent user: lazyladybug998
+[2025-09-07T08:23:00.621+0000] {kafka_stream.py:122} INFO - Sent user: smallfish502
+[2025-09-07T08:23:06.118+0000] {kafka_stream.py:122} INFO - Sent user: sadbird826
+[2025-09-07T08:23:11.906+0000] {kafka_stream.py:122} INFO - Sent user: redswan255
+[2025-09-07T08:23:17.481+0000] {kafka_stream.py:122} INFO - Sent user: sadbird592
+[2025-09-07T08:24:03.834+0000] {kafka_stream.py:122} INFO - Sent user: goldengoose807
+[2025-09-07T08:24:08.299+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to restarting. Terminating instance.
+[2025-09-07T08:24:08.306+0000] {process_utils.py:131} INFO - Sending 15 to group 170. PIDs of all processes in the group: [170]
+[2025-09-07T08:24:08.309+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 170
+[2025-09-07T08:24:08.313+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-09-07T08:24:08.349+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/kafka_stream.py", line 125, in stream_data
+    time.sleep(5)  # delay 5 วินาทีต่อ record
+    ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 1634, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+[2025-09-07T08:24:08.373+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=user_automation, task_id=stream_data_from_api, execution_date=20250906T000000, start_date=20250907T082214, end_date=20250907T082408
+[2025-09-07T08:24:08.417+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 24 for task stream_data_from_api (Task received SIGTERM signal; 170)
+[2025-09-07T08:24:08.462+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=170, status='terminated', exitcode=1, started='08:22:13') (170) terminated with exit code 1

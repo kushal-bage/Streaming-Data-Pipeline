@@ -1,0 +1,34 @@
+[2025-09-06T20:54:54.253+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: user_automation.stream_data_from_api manual__2025-09-06T20:54:53.054084+00:00 [queued]>
+[2025-09-06T20:54:54.272+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: user_automation.stream_data_from_api manual__2025-09-06T20:54:53.054084+00:00 [queued]>
+[2025-09-06T20:54:54.273+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2025-09-06T20:54:54.299+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): stream_data_from_api> on 2025-09-06 20:54:53.054084+00:00
+[2025-09-06T20:54:54.308+0000] {standard_task_runner.py:57} INFO - Started process 260 to run task
+[2025-09-06T20:54:54.313+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'user_automation', 'stream_data_from_api', 'manual__2025-09-06T20:54:53.054084+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/kafka_stream.py', '--cfg-path', '/tmp/tmpdophtbr8']
+[2025-09-06T20:54:54.317+0000] {standard_task_runner.py:85} INFO - Job 16: Subtask stream_data_from_api
+[2025-09-06T20:54:54.416+0000] {task_command.py:416} INFO - Running <TaskInstance: user_automation.stream_data_from_api manual__2025-09-06T20:54:53.054084+00:00 [running]> on host a8ac21146533
+[2025-09-06T20:54:54.649+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airscholar' AIRFLOW_CTX_DAG_ID='user_automation' AIRFLOW_CTX_TASK_ID='stream_data_from_api' AIRFLOW_CTX_EXECUTION_DATE='2025-09-06T20:54:53.054084+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-06T20:54:53.054084+00:00'
+[2025-09-06T20:54:54.658+0000] {conn.py:380} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: connecting to broker:29092 [('172.18.0.9', 29092) IPv4]
+[2025-09-06T20:54:54.659+0000] {conn.py:1205} INFO - Probing node bootstrap-0 broker version
+[2025-09-06T20:54:54.662+0000] {conn.py:410} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: Connection complete.
+[2025-09-06T20:54:54.772+0000] {conn.py:1267} INFO - Broker version identified as 2.5.0
+[2025-09-06T20:54:54.773+0000] {conn.py:1268} INFO - Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+[2025-09-06T20:54:55.445+0000] {kafka_stream.py:122} INFO - Sent user: greengoose401
+[2025-09-06T20:54:55.451+0000] {conn.py:380} INFO - <BrokerConnection node_id=1 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: connecting to broker:29092 [('172.18.0.9', 29092) IPv4]
+[2025-09-06T20:54:55.456+0000] {conn.py:410} INFO - <BrokerConnection node_id=1 host=broker:29092 <connecting> [IPv4 ('172.18.0.9', 29092)]>: Connection complete.
+[2025-09-06T20:54:55.459+0000] {conn.py:919} INFO - <BrokerConnection node_id=bootstrap-0 host=broker:29092 <connected> [IPv4 ('172.18.0.9', 29092)]>: Closing connection. 
+[2025-09-06T20:55:00.876+0000] {kafka_stream.py:122} INFO - Sent user: heavygorilla755
+[2025-09-06T20:55:06.308+0000] {kafka_stream.py:122} INFO - Sent user: beautifulmeercat929
+[2025-09-06T20:55:11.892+0000] {kafka_stream.py:122} INFO - Sent user: whiterabbit779
+[2025-09-06T20:55:17.539+0000] {kafka_stream.py:122} INFO - Sent user: redmouse427
+[2025-09-06T20:55:25.143+0000] {kafka_stream.py:122} INFO - Sent user: smalllion184
+[2025-09-06T20:55:30.880+0000] {kafka_stream.py:122} INFO - Sent user: happylion185
+[2025-09-06T20:55:36.379+0000] {kafka_stream.py:122} INFO - Sent user: blueelephant859
+[2025-09-06T20:55:42.308+0000] {kafka_stream.py:122} INFO - Sent user: orangegoose132
+[2025-09-06T20:55:47.838+0000] {kafka_stream.py:122} INFO - Sent user: purplecat488
+[2025-09-06T20:55:53.364+0000] {kafka_stream.py:122} INFO - Sent user: purpleleopard726
+[2025-09-06T20:55:58.376+0000] {kafka_stream.py:128} INFO - Finished streaming batch to Kafka.
+[2025-09-06T20:55:58.378+0000] {conn.py:919} INFO - <BrokerConnection node_id=1 host=broker:29092 <connected> [IPv4 ('172.18.0.9', 29092)]>: Closing connection. 
+[2025-09-06T20:55:58.397+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-09-06T20:55:58.442+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=user_automation, task_id=stream_data_from_api, execution_date=20250906T205453, start_date=20250906T205454, end_date=20250906T205558
+[2025-09-06T20:55:58.551+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-09-06T20:55:58.614+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

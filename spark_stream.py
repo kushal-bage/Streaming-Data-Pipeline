@@ -7,6 +7,7 @@ from pyspark.sql.types import StructType, StructField, StringType
 
 
 def create_keyspace(session):
+    # สร้าง Database / Schema บน Cassandra เรียกว่า Keyspace
     session.execute("""
         CREATE KEYSPACE IF NOT EXISTS spark_streams
         WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'};
@@ -16,6 +17,7 @@ def create_keyspace(session):
 
 
 def create_table(session):
+    # สร้าง Table
     session.execute("""
     CREATE TABLE IF NOT EXISTS spark_streams.created_users (
         id UUID PRIMARY KEY,
@@ -62,17 +64,18 @@ def insert_data(session, **kwargs):
     except Exception as e:
         logging.error(f'could not insert data due to {e}')
 
-
+# ฟังก์ชันสร้างการเชื่อมต่อกับ Spark
 def create_spark_connection():
     s_conn = None
 
     try:
-        s_conn = SparkSession.builder \
-            .appName('SparkDataStreaming') \
-            .config('spark.jars.packages', "com.datastax.spark:spark-cassandra-connector_2.13:3.4.1,"
-                                           "org.apache.spark:spark-sql-kafka-0-10_2.13:3.4.1") \
-            .config('spark.cassandra.connection.host', 'localhost') \
-            .getOrCreate()
+        s_conn = (SparkSession.builder 
+            .appName('SparkDataStreaming') 
+            .config('spark.jars.packages', # โหลดแพคเกจสำหรับ Spark
+                    "com.datastax.spark:spark-cassandra-connector_2.13:3.5.0," # โหลดแพคเกจสำหรับเชื่อมต่อกับ Cassandra
+                    "org.apache.spark:spark-sql-kafka-0-10_2.13:3.5.1") # โหลดแพคเกจสำหรับเชื่อมต่อกับ Kafka 
+            .config('spark.cassandra.connection.host', 'localhost') # กำหนดที่อยู่การเชื่อมต่อกับ Cassandra
+            .getOrCreate())
 
         s_conn.sparkContext.setLogLevel("ERROR")
         logging.info("Spark connection created successfully!")
@@ -81,36 +84,36 @@ def create_spark_connection():
 
     return s_conn
 
-
+# ฟังก์ชันการเชื่อมต่อกับ Kafka
 def connect_to_kafka(spark_conn):
     spark_df = None
     try:
-        spark_df = spark_conn.readStream \
+        spark_df = (spark_conn.readStream \
             .format('kafka') \
-            .option('kafka.bootstrap.servers', 'localhost:9092') \
-            .option('subscribe', 'users_created') \
-            .option('startingOffsets', 'earliest') \
-            .load()
+            .option('kafka.bootstrap.servers', 'localhost:9092') # กำหนดที่อยู่การเชื่อมต่อกับ Kafka Broker
+            .option('subscribe', 'users_created') # กำหนดชื่อของ Kafka Topic ที่จะดึงข้อมูลมา
+            .option('startingOffsets', 'earliest') # กำหนดว่าจะดึงข้อมูลจากเริ่มต้นหรือไม่ earliest (อ่านจากที่เริ่ม) หรือ latest (อ่านจากข้อมูลที่เข้ามาล่าสุด)
+            .load())
         logging.info("kafka dataframe created successfully")
     except Exception as e:
         logging.warning(f"kafka dataframe could not be created because: {e}")
 
     return spark_df
 
-
+# ฟังก์ชันสร้างการเชื่อมต่อกับ Cassandra
 def create_cassandra_connection():
     try:
         # connecting to the cassandra cluster
-        cluster = Cluster(['localhost'])
+        cluster = Cluster(['localhost']) # กำหนดที่อยู่การเชื่อมต่อกับ Cassandra
 
-        cas_session = cluster.connect()
+        cas_session = cluster.connect() # สร้างการเชื่อมต่อ
 
         return cas_session
     except Exception as e:
         logging.error(f"Could not create cassandra connection due to {e}")
         return None
 
-
+# ฟังก์ชันประมวลผลข้อมูลด้วย Spark
 def create_selection_df_from_kafka(spark_df):
     schema = StructType([
         StructField("id", StringType(), False),
@@ -135,17 +138,17 @@ def create_selection_df_from_kafka(spark_df):
 
 if __name__ == "__main__":
     # create spark connection
-    spark_conn = create_spark_connection()
+    spark_conn = create_spark_connection() # สร้างการเชื่อมต่อกับ Spark
 
     if spark_conn is not None:
         # connect to kafka with spark connection
-        spark_df = connect_to_kafka(spark_conn)
-        selection_df = create_selection_df_from_kafka(spark_df)
-        session = create_cassandra_connection()
+        spark_df = connect_to_kafka(spark_conn) # สร้างการเชื่อมต่อกับ Kafka
+        selection_df = create_selection_df_from_kafka(spark_df) # ดึงข้อมูลจาก Kafka
+        session = create_cassandra_connection() # สร้างการเชื่อมต่อกับ Cassandra
 
         if session is not None:
-            create_keyspace(session)
-            create_table(session)
+            create_keyspace(session) # สร้าง Database / Schema บน Cassandra เรียกว่า Keyspace
+            create_table(session) # สร้าง Table
 
             logging.info("Streaming is being started...")
 
