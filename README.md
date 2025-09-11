@@ -120,7 +120,14 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
    - Limits concurrency and active runs to avoid overlapping tasks
 
 ## ✅ Final Output
-* The final output from Looker Studio can be accessed via the following link: [View Dashboard](https://lookerstudio.google.com/reporting/5737527d-e089-47f5-80f1-2adda4ff3019). Note: The dashboard reads data from a static CSV file exported from BigQuery.
+
+* The primary **real-time output** of this streaming pipeline is stored in **Cassandra**.  
+  Processed data written into Cassandra can be queried directly using **CQL** for analytics or integrated into downstream systems.
+
+* For visualization and exploration, data from Cassandra can be accessed via tools such as:
+  - **Jupyter Notebook** (interactive analysis)
+  - **Looker Studio** (optional dashboard, currently using exported data for demo purposes)
+
 
 ## 🚀 Setup & Execution
 
