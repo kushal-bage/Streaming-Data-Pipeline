@@ -103,22 +103,23 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 ![Workflow_Diagram](images/Workflow_Diagram.png)
 
 ## 🔄 Streaming ETL Workflow Diagram
-![ETL_Diagram](images/ETL_Diagram.png)
+![Streaming_Dags](images/Streaming_Dags.png)
 
 #### Spark ETL Components / Airflow Tasks
 
 1. **Ingestion Stage:**
    - `kafka_producer` → send events into Kafka topics
 
-2. **Transform Stage:**
-   - `spark_streaming` → read Kafka stream
-   - apply transformations, filtering, parsing
+2. **Transform & Load Stage:**
+   - `run_streaming`task → reads Kafka streams using Spark Structured Streaming
+   - Performs transformations, filtering, and parsing
+   - Writes processed results into Cassandra tables
 
-3. **Load Stage:**
-   - `cassandra_writer` → push processed data into Cassandra tables
   
-4. **Orchestration:**
-   - Airflow DAG schedules and monitors streaming jobs
+3. **Orchestration:**
+   - Airflow DAG schedules and monitors the `run_streaming` task
+   - DAG runs every 1 minute (`schedule_interval='*/1 * * * *'`)
+   - Limits concurrency and active runs to avoid overlapping tasks
 
 ## ✅ Final Output
 [<img src="https://github.com/user-attachments/assets/9f373252-43cd-43ac-970c-f262ea87e39d" width=70% height=70%>](https://lookerstudio.google.com/reporting/5737527d-e089-47f5-80f1-2adda4ff3019)
