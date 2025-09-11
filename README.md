@@ -44,7 +44,7 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 
 ## 💾 Real-time Storage (Cassandra)
 
-![Cassandra_Storage](images/Streaming_Topics.png)
+![Cassandra_Storage](images/Database_Cassandra.png)
 
 **Key Features :**
 - Uses **Cassandra** for scalable, fault-tolerant storage.
@@ -65,15 +65,39 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 ### 1. Kafka Producer
 ```json
 {
-  "id": "u123",
-  "event_time": "2025-09-11T10:00:00Z",
-  "action": "purchase",
-  "amount": 59.99
+  "id": "8e7fce72-89bc-4685-a747-b0f8624e020d",
+  "first_name": "Elaine",
+  "last_name": "Harvey",
+  "gender": "female",
+  "address": "353 Blossom Hill Rd, Dayton, Vermont, United States",
+  "post_code": 18511,
+  "email": "elaine.harvey@example.com",
+  "username": "smallcat386",
+  "dob": "1999-04-02T12:55:47.460Z",
+  "registered_date": "2019-10-19T01:25:43.507Z",
+  "phone": "(456) 390-1836",
+  "picture": "https://randomuser.me/api/portraits/med/women/0.jpg"
 }
 ```
 - Custom producer generates real-time events.
 - Data is published to Kafka topics, consumed by Spark.
 - Kafka Control Center available at http://localhost:9021
+
+### 2. Kafka Control Center Overview
+
+**Kafka Brokers :**
+
+  Shows the Kafka brokers managing the streaming data.
+
+![Streaming_Broker](images/Streaming_Broker.png)
+*Shows the active Kafka brokers handling the streaming data.*
+
+**Kafka Topics :**
+    
+  Shows the active Kafka topics where events are published.
+
+![Streaming_Topics](images/Streaming_Topics.png)
+*Shows the Kafka topics where the real-time events are published.*
 
 ## 🧾 Data Flow Diagram
 ![Workflow_Diagram](images/Workflow_Diagram.png)
