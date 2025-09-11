@@ -28,7 +28,7 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 
 **Visualization :**
 - Looker Studio
-- JupyterLab
+- Jupyter Notebook
 
 ## 🐳 Docker / Infrastructure Setup
 
@@ -40,11 +40,11 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 - `spark-master`, `spark-worker`
 - `cassandra_db`
 - `jupyter`
-- `producer`
+- `producer` *(running inside container)*
 
 ## 💾 Real-time Storage (Cassandra)
 
-![Cassandra_Storage](images/Streaming_Topics.png)
+![Cassandra_Storage](images/Database_Cassandra.png)
 
 **Key Features :**
 - Uses **Cassandra** for scalable, fault-tolerant storage.
@@ -65,39 +65,61 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 ### 1. Kafka Producer
 ```json
 {
-  "id": "u123",
-  "event_time": "2025-09-11T10:00:00Z",
-  "action": "purchase",
-  "amount": 59.99
+  "id": "8e7fce72-89bc-4685-a747-b0f8624e020d",
+  "first_name": "Elaine",
+  "last_name": "Harvey",
+  "gender": "female",
+  "address": "353 Blossom Hill Rd, Dayton, Vermont, United States",
+  "post_code": 18511,
+  "email": "elaine.harvey@example.com",
+  "username": "smallcat386",
+  "dob": "1999-04-02T12:55:47.460Z",
+  "registered_date": "2019-10-19T01:25:43.507Z",
+  "phone": "(456) 390-1836",
+  "picture": "https://randomuser.me/api/portraits/med/women/0.jpg"
 }
 ```
 - Custom producer generates real-time events.
 - Data is published to Kafka topics, consumed by Spark.
-- Kafka Control Center available at http://localhost:9021
+- Producer runs inside container.
+- Kafka Control Center available at http://localhost:9021.
 
-## 🧾 Data Flow Diagram
-![Workflow_Diagram](images/Workflow_Diagram.png)
+### 2. Kafka Control Center Overview
+
+**Kafka Brokers :**
+
+  Shows the Kafka brokers managing the streaming data.
+
+![Streaming_Broker](images/Streaming_Broker.png)
+*Shows the active Kafka brokers handling the streaming data.*
+
+**Kafka Topics :**
+    
+  Shows the active Kafka topics where events are published.
+
+![Streaming_Topics](images/Streaming_Topics.png)
+*Shows the Kafka topics where the real-time events are published.*
 
 ## 🔄 Streaming ETL Workflow Diagram
-![ETL_Diagram](images/ETL_Diagram.png)
+![Streaming_Dags](images/Streaming_Dags.png)
 
 #### Spark ETL Components / Airflow Tasks
 
 1. **Ingestion Stage:**
    - `kafka_producer` → send events into Kafka topics
 
-2. **Transform Stage:**
-   - `spark_streaming` → read Kafka stream
-   - apply transformations, filtering, parsing
+2. **Transform & Load Stage:**
+   - `run_streaming` task → reads Kafka streams using Spark Structured Streaming
+   - Performs transformations, filtering, and parsing
+   - Writes processed results into Cassandra tables
 
-3. **Load Stage:**
-   - `cassandra_writer` → push processed data into Cassandra tables
   
-4. **Orchestration:**
-   - Airflow DAG schedules and monitors streaming jobs
+3. **Orchestration:**
+   - Airflow DAG schedules and monitors the `run_streaming` task
+   - DAG runs every 1 minute (`schedule_interval='*/1 * * * *'`)
+   - Limits concurrency and active runs to avoid overlapping tasks
 
 ## ✅ Final Output
-[<img src="https://github.com/user-attachments/assets/9f373252-43cd-43ac-970c-f262ea87e39d" width=70% height=70%>](https://lookerstudio.google.com/reporting/5737527d-e089-47f5-80f1-2adda4ff3019)
 * The final output from Looker Studio can be accessed via the following link: [View Dashboard](https://lookerstudio.google.com/reporting/5737527d-e089-47f5-80f1-2adda4ff3019). Note: The dashboard reads data from a static CSV file exported from BigQuery.
 
 ## 🚀 Setup & Execution
@@ -105,55 +127,15 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 1. Clone this repository :
 
 ```bash
-git clone https://github.com/supakunz/Book-Revenue-Pipeline.git
+git clone https://github.com/supakunz/Streaming-Data-Pipeline.git
 ```
 
-2. Navigate to the project folder and Set up the environment variables :
-
-```
-cd Book-Revenue-Pipeline
-```
-- Create a `.env` file in the root directory.
-
-- Add the following variables to the .env file, replacing the placeholder values with your own:
-
-```
-# Airflow Configuration
-AIRFLOW_UID=1000
-_AIRFLOW_WWW_USER_USERNAME=airflow
-_AIRFLOW_WWW_USER_PASSWORD=airflow123
-
-# MySQL Database
-MYSQL_ROOT_PASSWORD=rootpassword
-MYSQL_DATABASE=airflow
-MYSQL_USER=airflow
-MYSQL_PASSWORD=airflow
-
-# MinIO
-MINIO_ROOT_USER=minioadmin
-MINIO_ROOT_PASSWORD=minioadmin
-
-# Jupyter
-JUPYTER_TOKEN=
-JUPYTER_PORT=8888
-
-# Network
-COMPOSE_PROJECT_NAME=data-engineering
-
-# Additional Ports
-PHPMYADMIN_PORT=8082
-AIRFLOW_WEBSERVER_PORT=8080
-SPARK_MASTER_UI_PORT=8081
-MINIO_API_PORT=9000
-MINIO_CONSOLE_PORT=9001
-MYSQL_PORT=3306
-```
-3. Start the services :
+2. Start the services :
 ```bash
 docker compose up -d
 ```
 
-4. Start the services :
+3. Start the services :
 
 - Airflow: http://localhost:8080
 - Kafka Control Center: http://localhost:9021
