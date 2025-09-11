@@ -1,12 +1,12 @@
 
-# 📘 Book Sales End-To-End Data Engineering Project
+# 📡 Streaming Data Engineering Project
 
-> End-to-end data engineering project using Docker, Airflow, Spark, MinIO(S3), BigQuery and Looker Studio
+> Real-time data engineering project using Docker, Kafka, Spark Structured Streaming, Cassandra and Airflow
 
 ## 🧾 Project Overview
 
-This project demonstrates a complete modern data pipeline from raw ingestion to BI dashboard.  
-It covers orchestration (Airflow), distributed processing (Spark), cloud storage/warehouse (MinIO(S3) & BigQuery) and visualization (Looker Studio).
+This project demonstrates a real-time data pipeline for streaming ingestion, processing, and storage.
+It covers orchestration (Airflow), streaming processing (Spark Structured Streaming), real-time messaging (Kafka), scalable storage (Cassandra), and analytics (Jupyter).
 
 ## ⚙️ Architecture Diagram
 ![Arch_Diagram](images/Architecture_Diagram.png)
@@ -17,35 +17,39 @@ It covers orchestration (Airflow), distributed processing (Spark), cloud storage
 - Python
 - SQL
 
-**Data Processing & Orchestration :**
+**Data Streaming & Orchestration :**
+- Apache Kafka
 - Apache Airflow
-- Apache Spark
+- Apache Spark (Structured Streaming)
 
-**Infrastructure & Cloud Platform :**
+**Infrastructure & Storage  :**
 - Docker
-- MinIO (S3)
-- BigQuery
+- Cassandra
 
 **Visualization :**
 - Looker Studio
+- JupyterLab
 
 ## 🐳 Docker / Infrastructure Setup
 
 ![Docker_Setup](images/Docker_Service.png)
 
 **Services included :**
-- `airflow-webserver`, `airflow-scheduler`
+- `zookeeper`, `broker`, `schema-registry`, `control-center`
+- `airflow-webserver`, `airflow-scheduler`, `postgres`
 - `spark-master`, `spark-worker`
-- `mysql`, `phpmyadmin`, `json-server`, etc.
+- `cassandra_db`
+- `jupyter`
+- `producer`
 
-## 💾 Data Lake Storage (MinIO)
+## 💾 Real-time Storage (Cassandra)
 
 ![Minio_Storage](images/minio_processed_data.png)
 
-**Bucket Structure :**
-- Uses **MinIO** as an S3-compatible object storage.
-- All raw, processed, and output data from the pipeline is stored here before being loaded into the data warehouse.
-- The `data-lake` bucket is the primary storage location for this project.
+**Key Features :**
+- Uses **Cassandra** for scalable, fault-tolerant storage.
+- Processed streaming data from Spark is written into Cassandra.
+- Supports CQL queries for downstream analytics.
 
 ## ⚡ Spark Cluster (Master/Workers)
 
@@ -56,49 +60,41 @@ It covers orchestration (Airflow), distributed processing (Spark), cloud storage
 - 1 Spark Workers
 - Deployed inside Docker containers
 
-## 📂 Raw Database
+## 📂 Data Ingestion
 
-### 1. MySQL Tables
-![MySQL_Raw Table](images/mysql_raw_data.png)
-
-- `data_audible` : raw book sales data (user_id, country, price, rating, etc.)
-- Data too large to include in repo.
-- Download: [Google Drive Link](https://drive.google.com/...)
-
-### 2. API Source (JSON)
+### 1. Kafka Producer
 ```json
-[
-  {"date": "2021-04-01", "conversion_rate": 31.194, "id": "dc1b"},
-  {"date": "2021-04-02", "conversion_rate": 31.29,  "id": "ac7a"},
-  {"date": "2021-04-03", "conversion_rate": 31.256, "id": "b741"},
-  {"date": "2021-04-04", "conversion_rate": 31.244, "id": "eaa3"},
-  ...
-]
+{
+  "id": "u123",
+  "event_time": "2025-09-11T10:00:00Z",
+  "action": "purchase",
+  "amount": 59.99
+}
 ```
-
-- Conversion rate data fetched from API.
-- File is included in repo at (server/conversion_rate.json).
+- Custom producer generates real-time events.
+- Data is published to Kafka topics, consumed by Spark.
+- Kafka Control Center available at http://localhost:9021
 
 ## 🧾 Data Flow Diagram
 ![Workflow_Diagram](images/Workflow_Diagram.png)
 
-## 🔄 ETL Workflow Diagram
+## 🔄 Streaming ETL Workflow Diagram
 ![ETL_Diagram](images/ETL_Diagram.png)
 
 #### Spark ETL Components / Airflow Tasks
 
-1. **Extract Stage:**
-   - `extract_from_db` → extract data from database → save as parquet
-   - `extract_from_api` → extract data from API → save as JSON
+1. **Ingestion Stage:**
+   - `kafka_producer` → send events into Kafka topics
 
 2. **Transform Stage:**
-   - `db_clean_db` / `api_clean` → clean database & API data
-   - `join_table` → join DB and API data
-   - `handle_missing` / `final` → handle missing values and eda
-   - `transform_data` → perform additional transformations / calculations
+   - `spark_streaming` → read Kafka stream
+   - apply transformations, filtering, parsing
 
 3. **Load Stage:**
-   - `load_data` → push final tables to BigQuery
+   - `cassandra_writer` → push processed data into Cassandra tables
+  
+4. **Orchestration:**
+   - Airflow DAG schedules and monitors streaming jobs
 
 ## ✅ Final Output
 [<img src="https://github.com/user-attachments/assets/9f373252-43cd-43ac-970c-f262ea87e39d" width=70% height=70%>](https://lookerstudio.google.com/reporting/5737527d-e089-47f5-80f1-2adda4ff3019)
@@ -152,16 +148,17 @@ MINIO_API_PORT=9000
 MINIO_CONSOLE_PORT=9001
 MYSQL_PORT=3306
 ```
-3. Download the raw data from [Google Drive Link](https://drive.google.com/...) :
-
-    - Extract or move the files into the initdb/ folder inside the project directory.
-
-    - This data will be automatically loaded into the pipeline when the containers start.
-
-4. Start the services :
+3. Start the services :
 ```bash
 docker compose up -d
 ```
+
+4. Start the services :
+
+- Airflow: http://localhost:8080
+- Kafka Control Center: http://localhost:9021
+- Jupyter: http://localhost:8888
+- Cassandra (CQL): `localhost:9042`
 
 ## 🙋‍♂️ Contact
 
