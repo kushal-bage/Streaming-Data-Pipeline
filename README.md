@@ -100,9 +100,6 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 ![Streaming_Topics](images/Streaming_Topics.png)
 *Shows the Kafka topics where the real-time events are published.*
 
-## 🧾 Data Flow Diagram
-![Workflow_Diagram](images/Workflow_Diagram.png)
-
 ## 🔄 Streaming ETL Workflow Diagram
 ![Streaming_Dags](images/Streaming_Dags.png)
 
