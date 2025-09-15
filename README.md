@@ -27,7 +27,6 @@ It covers orchestration (Airflow), streaming processing (Spark Structured Stream
 - Cassandra
 
 **Visualization :**
-- Looker Studio
 - Jupyter Notebook
 
 ## 🐳 Docker / Infrastructure Setup
